@@ -181,3 +181,16 @@ By plotting the calculated $I_{budget}$ (Money) and $I_{coverage}$ (People), pro
 ## What This Formula Reveals
 By pouring financial statement data into this formula, projects plotted in **"Quadrant 4 (High Money / Low Reach)"** are exposed.
 This area represents the **"Pathology needing Audit"** (Vested interests, Thoughtless spending).
+
+## Usage (Python Version)
+### Workflow: From Theory to Practice
+
+By combining the tools in this repository, you can perform automated auditing through the following workflow:
+
+1.  **Data Preparation (Create CSV)**
+    *   Use `prompts/auditor_prompt.md` to instruct an AI (Gemini/ChatGPT/Claude) to analyze financial statement PDFs and generate an `input.csv` file.
+2.  **Execution (Run Analysis)**
+    *   Load the generated CSV into the Python script.
+    *   Command: `python budget_distortion_analyzer.py input.csv`
+3.  **Output (Get Results)**
+    *   The **"Distortion Index ($D_{index}$)"** and **"Verdict (Quadrant)"** are automatically calculated based on the theory, listing priority projects for audit.
