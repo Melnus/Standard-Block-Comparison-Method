@@ -1,6 +1,6 @@
 /**
  * ==========================================
- * Standard Block Comparison Method for Google Sheets
+ * Standard Block Comparison Method for Google Sheets (v2.0)
  * 標準ブロック比較法 カスタム関数スクリプト
  * ==========================================
  * 
@@ -9,27 +9,18 @@
  * 2. メニューの「拡張機能」>「Apps Script」をクリック (Extensions > Apps Script)
  * 3. このコードを貼り付けて保存 (Paste this code and save)
  * 4. シート上で関数として使用可能になります (Use as custom functions)
- * 
- * 【使い方 / Usage】
- * =IMPACT_SCORE(値, ターゲット比率)
- * =IMPACT_VERDICT(インパクト値)
  */
 
 /**
- * 定数設定：日本の統計データに基づく
- * Constants: Based on Japanese statistics
+ * 定数設定
  */
 const CONSTANTS = {
-  POPULATION: 124000000, // 総人口 (Total Population)
-  MUNICIPALITIES: 1718   // 基礎自治体数 (Total Municipalities)
+  POPULATION: 124000000, // 総人口
+  MUNICIPALITIES: 1718   // 基礎自治体数
 };
 
 /**
- * 標準ブロック（B）を算出するカスタム関数
- * Calculates the Standard Block (B)
- * 
- * @param {number} targetRatio ターゲット属性の比率 (0.0 - 1.0) Default: 1.0
- * @return {number} 標準ブロック数 (Standard Block Capacity)
+ * 標準ブロック（B）を算出
  * @customfunction
  */
 function STANDARD_BLOCK(targetRatio = 1.0) {
@@ -38,12 +29,7 @@ function STANDARD_BLOCK(targetRatio = 1.0) {
 }
 
 /**
- * 実効性インパクト（I）を算出するカスタム関数
- * Calculates the Effectiveness Impact (I)
- * 
- * @param {number} value 発表された成果数（人数・円など） (Announced Value)
- * @param {number} targetRatio ターゲット比率 (0.0 - 1.0) Default: 1.0
- * @return {number} インパクト値 (Impact Score)
+ * 実効性インパクト（I）を算出
  * @customfunction
  */
 function IMPACT_SCORE(value, targetRatio = 1.0) {
@@ -53,16 +39,25 @@ function IMPACT_SCORE(value, targetRatio = 1.0) {
 }
 
 /**
- * インパクト値から判定コメントを返す関数
- * Returns a verdict based on the Impact Score
- * 
- * @param {number} score インパクト値 (Impact Score)
- * @return {string} 判定コメント (Verdict)
+ * インパクト値から詳細な判定コメントを返す (v2.0)
+ * @param {number} score インパクト値
+ * @return {string} 判定コメント
  * @customfunction
  */
 function IMPACT_VERDICT(score) {
   if (score === "") return "";
-  if (score < 1.0) return "❌ 誤差レベル (Error Level: < 1.0)";
-  if (score < 10.0) return "⚠️ 局所的 (Localized: 1.0 - 9.9)";
-  return "✅ 実効性あり (Effective: >= 10)";
+  
+  if (score < 1.0) {
+    return "💀 誤差レベル (Error Level)";
+  } else if (score < 14.0) {
+    return "⚠️ 局所的 (Localized / 郵便局以下)";
+  } else if (score < 32.0) {
+    return "🏠 基礎インフラ級 (Infrastructure / 郵便局超え)";
+  } else if (score < 700.0) {
+    return "🏪 コンビニ級 (Convenience / コンビニ超え)";
+  } else if (score < 7000.0) {
+    return "🚀 普及フェーズ (Penetration / 人口1%超え)";
+  } else {
+    return "👑 社会OS級 (Social OS / 人口10%超え)";
+  }
 }
