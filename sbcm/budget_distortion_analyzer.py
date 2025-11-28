@@ -3,14 +3,12 @@ import argparse
 import sys
 import os
 
-# config.py をインポートするためのパス設定
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# 同じフォルダにある config.py を読み込む
 try:
-    import config
+    from . import config
 except ImportError:
-    print("エラー: 'config.py' が見つかりません。", file=sys.stderr)
-    sys.exit(1)
-
+    import config
+    
 def analyze_budget_distortion(file_path, city_population):
     """
     CSVデータを読み込み、予算歪み指数を計算してCSVとコンソールに出力する
