@@ -1,10 +1,19 @@
 import argparse
 import numpy as np
 import sys
+import os
 
-# 定数定義
-DEFAULT_POPULATION = 124_000_000  # 日本の総人口
-DEFAULT_MUNICIPALITIES = 1_718    # 基礎自治体数
+# 親ディレクトリの 'methodology' フォルダから config.py を読み込むためのパス設定
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../methodology'))
+try:
+    import config
+except ImportError:
+    # 開発環境によっては ../methodology が解決できない場合があるので、カレント直下も試す
+    try:
+        import methodology.config as config
+    except ImportError:
+        print("エラー: '../methodology/config.py' が見つかりません。", file=sys.stderr)
+        sys.exit(1)
 
 def run_simulation(v_obs, r_mean, r_sd, population, municipalities, n_sims=20000):
     """
@@ -16,11 +25,11 @@ def run_simulation(v_obs, r_mean, r_sd, population, municipalities, n_sims=20000
     r_samps = rng.normal(loc=r_mean, scale=r_sd, size=n_sims)
     r_samps = np.clip(r_samps, 0.0001, 0.9999) # 0除算防止
 
-    # 2. 発表数値 V の観測誤差 (ポアソン分布を仮定。予算の場合は正規分布推奨だが、簡易的にこれで)
-    # 値が大きい場合、ポアソン分布は正規分布に近似する
+    # 2. 発表数値 V の観測誤差 (ポアソン分布を仮定)
     v_samps = rng.poisson(lam=max(1.0, v_obs), size=n_sims)
 
     # 3. 標準ブロック B と インパクト I の計算
+    # config.py の定数ではなく、シミュレーション引数として渡された値（基本はconfigと同じ）を使用
     b_samps = (population * r_samps) / municipalities
     i_samps = v_samps / b_samps
 
@@ -38,9 +47,14 @@ def main():
 
     args = parser.parse_args()
 
+    # config.py から定数を取得
+    pop = config.NATIONAL_POPULATION
+    munis = config.TOTAL_MUNICIPALITIES
+
     print(f"--- Simulation Parameters ---")
     print(f"発表数値 (V): {args.value:,.0f}")
     print(f"ターゲット比率 (R): {args.target_ratio:.2f} (±{args.ratio_sd})")
+    print(f"基礎定数 (Pop/Munis): {pop:,.0f} / {munis:,}")
     print(f"試行回数: {args.sims}")
     print(f"-----------------------------")
 
@@ -50,8 +64,8 @@ def main():
             args.value, 
             args.target_ratio, 
             args.ratio_sd, 
-            DEFAULT_POPULATION, 
-            DEFAULT_MUNICIPALITIES, 
+            pop, 
+            munis, 
             args.sims
         )
 
