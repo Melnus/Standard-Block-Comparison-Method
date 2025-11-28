@@ -2,7 +2,12 @@
 
 ## 1. Introduction
 The Osaka-Kansai Expo, scheduled for 2025, is a national project in Japan with a massive budget and ambitious visitor targets. However, there is growing skepticism regarding its feasibility and economic rationale.
-This report analyzes the official projections using the **"Standard Block Comparison Method"** to strip away the "magic of large numbers" and reveal the logistical reality.
+This report analyzes the official projections using the **"Standard Block Comparison Method (SBCM)"** to strip away the "magic of large numbers" and reveal the logistical reality.
+
+**Constants used in this analysis (based on `config.py`):**
+*   **Total Population ($P$):** 124,000,000
+*   **Total Municipalities ($N$):** 1,718
+*   **Standard Block Population ($B_{std}$):** $124,000,000 \div 1,718 \approx \mathbf{72,176}$
 
 ## 2. Analysis by Standard Block Comparison
 
@@ -11,7 +16,8 @@ The government aims for 28.2 million visitors over a 6-month period. Let's break
 
 *   **Announced Figure ($V$):** 28,200,000 visitors
 *   **Total Municipalities ($N$):** 1,718
-*   **Burden per Block:** $\frac{28,200,000}{1,718} \approx 16,414 \text{ people/municipality}$
+*   **Burden per Block:** 
+    $$ \frac{28,200,000}{1,718} \approx \mathbf{16,414} \text{ people/municipality} $$
 
 **Analysis:**
 To achieve this target, **every single municipality in Japan**—from snowy Hokkaido to the islands of Okinawa—must mobilize an average of **16,414 people** to travel to Osaka.
@@ -22,7 +28,8 @@ The venue construction cost has ballooned to approximately 235 billion JPY (appr
 
 *   **Announced Figure ($V$):** 235,000,000,000 JPY
 *   **Total Municipalities ($N$):** 1,718
-*   **Cost per Block:** $\frac{235,000,000,000}{1,718} \approx 136,786,961 \text{ JPY}$
+*   **Cost per Block:** 
+    $$ \frac{235,000,000,000}{1,718} \approx \mathbf{136,786,961} \text{ JPY} $$
 
 **Analysis:**
 This is equivalent to every municipality in Japan donating **approx. 137 million JPY ($900k USD)** to build temporary pavilions on an artificial island.
@@ -33,7 +40,8 @@ Using the method to divide by "Time" instead of "Space":
 
 *   **Total Visitors ($V$):** 28,200,000
 *   **Duration:** 184 days
-*   **Required Daily Average:** $\frac{28,200,000}{184} \approx 153,260 \text{ people/day}$
+*   **Required Daily Average:** 
+    $$ \frac{28,200,000}{184} \approx \mathbf{153,261} \text{ people/day} $$
 
 **Analysis:**
 The venue is located on "Yumeshima," an artificial island with limited rail and road access.
@@ -43,8 +51,8 @@ The venue is located on "Yumeshima," an artificial island with limited rail and 
 ## 3. Conclusion
 When analyzed through the lens of the Standard Block Comparison Method, the Osaka-Kansai Expo 2025 reveals critical flaws:
 
-1.  **Unrealistic Mobilization:** The visitor target assumes a nationwide mobilization level that defies geographical and economic reality.
+1.  **Unrealistic Mobilization:** The visitor target assumes a nationwide mobilization level (16,414 people per municipality) that defies geographical and economic reality.
 2.  **Resource Misallocation:** The construction cost per municipality (137 million JPY) represents a significant opportunity cost for local welfare and education.
-3.  **Logistical Risk:** The daily traffic requirement exceeds the capacity of typical theme park infrastructure, let alone a temporary island venue.
+3.  **Logistical Risk:** The daily traffic requirement (153k/day) exceeds the capacity of typical theme park infrastructure, let alone a temporary island venue.
 
 The "Standard Block" analysis suggests that these figures are not based on demand forecasting but are **"political numbers"** created to justify the budget.
