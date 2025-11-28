@@ -1,16 +1,15 @@
 import pandas as pd
 import argparse
 import sys
+import os
 
-# === 設定：標準ブロック定数 ===
-# 日本の総人口と基礎自治体数（2023-2024基準）
-NATIONAL_POPULATION = 124_000_000
-TOTAL_MUNICIPALITIES = 1_718
-# 標準ブロック人口 (約7.2万人)
-STD_BLOCK_POP = NATIONAL_POPULATION / TOTAL_MUNICIPALITIES
-
-# 標準的な単一事業予算の単位（1,000万円と仮定して正規化）
-STD_BUDGET_UNIT = 10_000_000 
+# config.py をインポートするためのパス設定
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+try:
+    import config
+except ImportError:
+    print("エラー: 'config.py' が見つかりません。", file=sys.stderr)
+    sys.exit(1)
 
 def analyze_budget_distortion(file_path, city_population):
     """
@@ -32,11 +31,11 @@ def analyze_budget_distortion(file_path, city_population):
     # --- 計算ロジック (標準ブロック比較法・拡張版) ---
     
     # 1. 自治体の規模係数 (Scale Factor)
-    # 例: 柏市(43万人)なら 430000 / 72000 = 5.97倍
-    scale_factor = city_population / STD_BLOCK_POP
+    # 例: 柏市(43万人)なら 430000 / 72176 = 6.0倍
+    scale_factor = city_population / config.STD_BLOCK_POP
 
-    # 2. 柏市基準の適正予算単位
-    local_std_budget = STD_BUDGET_UNIT * scale_factor
+    # 2. 対象自治体における適正予算単位
+    local_std_budget = config.STD_BUDGET_UNIT * scale_factor
 
     # データフレームに計算結果を追加
     results = []
@@ -51,7 +50,7 @@ def analyze_budget_distortion(file_path, city_population):
 
         # B. 普及インパクト (I_coverage)
         # その事業が「標準的な1自治体（7.2万人）をどれだけカバーしているか」
-        i_coverage = users / STD_BLOCK_POP
+        i_coverage = users / config.STD_BLOCK_POP
 
         # C. 歪み指数 (D_index)
         # D = 金のデカさ / 人の多さ
@@ -98,6 +97,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print(f"\nAnalyzing... (City Population: {args.pop:,})\n")
+    print(f"Reference Constants (from config.py):")
+    print(f"- Standard Block Pop: {config.STD_BLOCK_POP:,.0f}")
+    print(f"- Standard Budget Unit: {config.STD_BUDGET_UNIT:,.0f}\n")
     
     df_result = analyze_budget_distortion(args.csv_file, args.pop)
 
