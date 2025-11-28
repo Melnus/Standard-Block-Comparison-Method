@@ -16,8 +16,7 @@ The government aims for 28.2 million visitors over a 6-month period. Let's break
 
 *   **Announced Figure ($V$):** 28,200,000 visitors
 *   **Total Municipalities ($N$):** 1,718
-*   **Burden per Block:** 
-    $$ \frac{28,200,000}{1,718} \approx \mathbf{16,414} \text{ people/municipality} $$
+*   **Burden per Block:** $\frac{28,200,000}{1,718} \approx \mathbf{16,414} \text{ people/municipality}$
 
 **Analysis:**
 To achieve this target, **every single municipality in Japan**—from snowy Hokkaido to the islands of Okinawa—must mobilize an average of **16,414 people** to travel to Osaka.
@@ -28,8 +27,7 @@ The venue construction cost has ballooned to approximately 235 billion JPY (appr
 
 *   **Announced Figure ($V$):** 235,000,000,000 JPY
 *   **Total Municipalities ($N$):** 1,718
-*   **Cost per Block:** 
-    $$ \frac{235,000,000,000}{1,718} \approx \mathbf{136,786,961} \text{ JPY} $$
+*   **Cost per Block:** $\frac{235,000,000,000}{1,718} \approx \mathbf{136,786,961} \text{ JPY}$
 
 **Analysis:**
 This is equivalent to every municipality in Japan donating **approx. 137 million JPY ($900k USD)** to build temporary pavilions on an artificial island.
@@ -40,8 +38,7 @@ Using the method to divide by "Time" instead of "Space":
 
 *   **Total Visitors ($V$):** 28,200,000
 *   **Duration:** 184 days
-*   **Required Daily Average:** 
-    $$ \frac{28,200,000}{184} \approx \mathbf{153,261} \text{ people/day} $$
+*   **Required Daily Average:** $\frac{28,200,000}{184} \approx \mathbf{153,261} \text{ people/day}$
 
 **Analysis:**
 The venue is located on "Yumeshima," an artificial island with limited rail and road access.
