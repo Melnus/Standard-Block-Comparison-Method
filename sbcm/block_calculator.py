@@ -2,13 +2,11 @@ import argparse
 import sys
 import os
 
-# config.py をインポートするためのパス設定
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# 同じフォルダにある config.py を読み込む
 try:
-    import config
+    from . import config
 except ImportError:
-    print("エラー: 'config.py' が見つかりません。同じディレクトリに配置してください。", file=sys.stderr)
-    sys.exit(1)
+    import config
 
 def calculate_standard_block(population, target_ratio, municipalities):
     """
