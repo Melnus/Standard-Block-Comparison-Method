@@ -131,3 +131,8 @@ Feel free to use it for administrative verification and auditing.
 
 ### Author
 **Melnus** (GitHub: [Melnus](https://github.com/Melnus))
+
+## 📝 Citation
+If you use SBCM in your research or auditing, please cite the following paper:
+
+> Koyama, H. (2025). Proposal for the Standard Block Comparison Method (SBCM) in the Quantitative Evaluation of Administrative Measures. Zenodo. https://doi.org/10.5281/zenodo.17762960
