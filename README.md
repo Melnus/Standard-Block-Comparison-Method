@@ -3,6 +3,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/standard-block-auditor.svg)](https://pypi.org/project/standard-block-auditor/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17762960.svg)](https://doi.org/10.5281/zenodo.17762960)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17766254.svg)](https://doi.org/10.5281/zenodo.17766254)
 
 **"数字のマジック"から解き放たれ、行政施策の真の実効性を測るための定量的監査フレームワーク**
 
